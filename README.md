@@ -58,28 +58,42 @@ This project involves detecting fraudulent transactions using three datasets: `F
 
 ---
 
-# **Model Training and Evaluation**
+# **Model Building and Training**
 
-Used the following steps:
+1. **Data Preparation**
+   - **Feature and Target Separation:**
+     - For `creditcard.csv`: Separate features and target variable **'Class'**.
+     - For `Fraud_Data.csv`: Separate features and target variable **'class'**.
+   - **Train-Test Split:**
+     - Split datasets into training and testing sets to evaluate model performance.
 
-Load Datasets:
+2. **Model Selection**
+   - Compare performance using the following models:
+     - **Logistic Regression**
+     - **Decision Tree**
+     - **Random Forest**
+     - **Gradient Boosting**
+     - **Multi-Layer Perceptron (MLP)**
 
-Load the processed fraud and credit card datasets.
-Data Preparation:
+3. **Model Training and Evaluation**
+   - **Train Models:**
+     - Train models on both `creditcard.csv` and `Fraud_Data.csv` datasets.
+   - **Evaluate Models:**
+     - Evaluate models using performance metrics such as:
+       - Accuracy
+       - Precision
+       - Recall
+       - F1 Score
+       - ROC-AUC
 
-Drop unnecessary columns and convert datetime columns to numerical features.
-Feature and Target Separation:
+4. **MLOps Steps**
+   - **Versioning and Experiment Tracking:**
+     - Use tools like **MLflow** to:
+       - Track experiments
+       - Log parameters
+       - Record metrics
+       - Manage model versioning
 
-Separate features and target variables for both datasets.
-Train-Test Split:
-
-Split the datasets into training and testing sets.
-Model Selection:
-
-Define a dictionary of machine learning models to be evaluated.
-Training and Evaluation:
-
-Train and evaluate the models using the train_and_evaluate function.
 
 ---
 
@@ -109,14 +123,6 @@ Clone the repository:
    git clone https://github.com/Abrham111/adey-innovations-fraud-detection.git
    cd adey-innovations-fraud-detection
    ```
-
----
-
-## **Results and Findings**
-- Data preprocessing improved data quality and enriched it with geolocation and time-based features.
-- Exploratory data analysis revealed some patterns relevant for further analysis.
-
----
 
 ## **Author**
 - Abrham B.
