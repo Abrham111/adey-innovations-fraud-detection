@@ -36,6 +36,7 @@ This project involves detecting fraudulent transactions using three datasets: `F
 ---
 
 ## **Project Structure**
+# **Data Analysis and Preprocessing**
 
 1. **Data Preprocessing**
    - Handle missing values.
@@ -56,6 +57,32 @@ This project involves detecting fraudulent transactions using three datasets: `F
    - Calculate transaction frequency and velocity.
 
 ---
+---
+
+# **Model Training and Evaluation**
+
+Used the following steps:
+
+Load Datasets:
+
+Load the processed fraud and credit card datasets.
+Data Preparation:
+
+Drop unnecessary columns and convert datetime columns to numerical features.
+Feature and Target Separation:
+
+Separate features and target variables for both datasets.
+Train-Test Split:
+
+Split the datasets into training and testing sets.
+Model Selection:
+
+Define a dictionary of machine learning models to be evaluated.
+Training and Evaluation:
+
+Train and evaluate the models using the train_and_evaluate function.
+
+---
 
 ## **Requirements**
 
@@ -72,6 +99,7 @@ pip install -r requirements.txt
 - seaborn
 - scikit-learn
 - ipaddress
+- mlflow
 
 ---
 
