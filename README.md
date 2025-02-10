@@ -57,7 +57,6 @@ This project involves detecting fraudulent transactions using three datasets: `F
    - Calculate transaction frequency and velocity.
 
 ---
----
 
 # **Model Training and Evaluation**
 
