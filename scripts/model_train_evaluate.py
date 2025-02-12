@@ -3,6 +3,8 @@ import mlflow
 
 # Model Training and Evaluation Function
 def train_and_evaluate(models, X_train, X_test, y_train, y_test, dataset_name):
+  best_model = None
+  best_score = 0
   for model_name, model in models.items():
     with mlflow.start_run(run_name=f"{model_name} - {dataset_name}"):
       model.fit(X_train, y_train)
@@ -27,3 +29,10 @@ def train_and_evaluate(models, X_train, X_test, y_train, y_test, dataset_name):
       })
 
       print(f"{model_name} on {dataset_name}: Accuracy={accuracy:.4f}, Precision={precision:.4f}, Recall={recall:.4f}, F1={f1:.4f}, ROC-AUC={roc_auc:.4f}")
+
+      # Save the best performing model
+      if roc_auc > best_score:
+        best_model = model
+        best_score = roc_auc
+
+  return best_model
