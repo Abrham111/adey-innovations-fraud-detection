@@ -96,6 +96,81 @@ This project involves detecting fraudulent transactions using three datasets: `F
 
 
 ---
+# **Model Explainability**
+
+1. **Using SHAP for Explainability**
+   - SHAP (Shapley Additive exPlanations) provides a unified measure of feature importance, explaining the contribution of each feature to the model’s predictions.
+   - **Installing SHAP**  
+     Install SHAP with the following command:
+     ```bash
+     pip install shap
+     ```
+   - **Explaining a Model with SHAP**  
+     Use SHAP to interpret your fraud detection model’s predictions and understand the importance of each feature.
+   - **SHAP Plots**:
+     - **Summary Plot**: Provides an overview of the most important features affecting the model’s predictions.
+     - **Force Plot**: Visualizes the contribution of each feature for a specific prediction.
+     - **Dependence Plot**: Displays the relationship between a feature and the model’s output, helping to identify feature interactions.
+
+2. **Using LIME for Explainability**
+   - LIME (Local Interpretable Model-agnostic Explanations) explains individual predictions by approximating the model locally with an interpretable model.
+   - **Installing LIME**  
+     Install LIME with the following command:
+     ```bash
+     pip install lime
+     ```
+   - **Explaining a Model with LIME**  
+     Apply LIME to understand individual fraud predictions and how specific features influence the model.
+   - **LIME Plots**:
+     - **Feature Importance Plot**: Shows the most influential features for a particular prediction, helping to understand the model's decision-making process.
+
+---
+
+# **Model Deployment and API Development**
+
+1. **Setting Up the Flask API**
+   - **Create the Flask Application**:
+     - Create a new directory for your project.
+     - Inside the directory, create a Python script, `serve_model.py`, to serve the fraud detection model using Flask.
+     - Create a `requirements.txt` file to list the necessary dependencies, such as Flask and any other libraries.
+   - **API Development**:
+     - **Define API Endpoints**:  
+       Create the necessary API endpoints to receive data, process the model prediction, and return the results.
+     - **Test the API**:  
+       Test the API to ensure it works as expected by sending sample requests and validating the responses.
+
+2. **Dockerizing the Flask Application**
+   - **Create a Dockerfile**:  
+     Create a `Dockerfile` to containerize the Flask application for easier deployment.
+     ```dockerfile
+     # Use an official Python runtime as a parent image
+     FROM python:3.13-slim
+
+     # Set the working directory in the container
+     WORKDIR /app
+
+     # Copy the current directory contents into the container at /app
+     COPY . .
+
+     # Install any needed packages specified in requirements.txt
+     RUN pip install --no-cache-dir -r requirements.txt
+
+     # Make port 5000 available to the world outside this container
+     EXPOSE 5000
+
+     # Run serve_model.py when the container launches
+     CMD ["python", "serve_model.py"]
+     ```
+   - **Build and Run the Docker Container**:
+     - **Build the Docker image**:
+       ```bash
+       docker build -t fraud_api .
+       ```
+     - **Run the Docker container**:
+       ```bash
+       docker run -p 5000:5000 fraud_api
+       ```
+---
 
 ## **Requirements**
 
