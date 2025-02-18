@@ -210,6 +210,11 @@ pip install -r requirements.txt
 - scikit-learn
 - ipaddress
 - mlflow
+- joblib
+- shap
+- lime
+- flask
+- dash
 
 ---
 
