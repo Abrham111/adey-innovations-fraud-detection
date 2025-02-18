@@ -171,6 +171,28 @@ This project involves detecting fraudulent transactions using three datasets: `F
        docker run -p 5000:5000 fraud_api
        ```
 ---
+# **Fraud Detection Dashboard**
+
+## **1. Overview**
+An **interactive fraud detection dashboard** using **Flask** and **Dash**.  
+The Flask backend serves fraud data from a CSV file through API endpoints, while Dash is used to visualize insights.
+
+## **2. Features**
+- **Flask API Endpoints**:
+  - Serve summary statistics and fraud trends via API.
+- **Dash Visualizations**:
+  - **Summary Boxes**: Display total transactions, fraud cases, and fraud percentages.
+  - **Line Chart**: Shows fraud cases over time.
+  - **Fraud by Source & Browser**: Bar chart comparing fraud cases across different sources and browsers.
+
+## **3. Installation**
+### **Prerequisites**
+Ensure you have **Python 3.13** and install the required dependencies.
+
+### **Step 1: Install Dependencies**
+```bash
+pip install flask dash pandas plotly
+---
 
 ## **Requirements**
 
