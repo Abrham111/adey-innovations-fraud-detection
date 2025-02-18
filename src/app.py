@@ -28,6 +28,18 @@ def get_fraud_trends():
   fraud_trends.index = fraud_trends.index.astype(str)  # Convert PeriodIndex to string for JSON serialization
   return jsonify(fraud_trends.to_dict())
 
+# API Endpoint: Fraud cases over different ages
+@app.route("/api/age_trends", methods=["GET"])
+def get_fraud_per_age():
+  # Filter only fraudulent transactions
+  fraud_df = df[df["class"] == 1]
+
+  # Group by age
+  age_counts = fraud_df.groupby('age')['class'].count().reset_index()
+  age_counts.columns = ['age', 'fraud_cases']
+
+  return jsonify(age_counts.to_dict(orient="records"))
+
 # API Endpoint: Fraud data by browser and source
 @app.route("/api/fraud_browser_source", methods=["GET"])
 def fraud_by_browser_source():

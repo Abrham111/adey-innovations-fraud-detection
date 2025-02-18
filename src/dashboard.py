@@ -11,6 +11,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Fetch fraud statistics
 summary_data = requests.get("http://127.0.0.1:5001/api/summary").json()
 fraud_trends = requests.get("http://127.0.0.1:5001/api/fraud_trends").json()
+age_trends = requests.get("http://127.0.0.1:5001/api/age_trends").json()
 
 # Convert fraud trends data to DataFrame
 df_fraud_trends = pd.DataFrame(list(fraud_trends.items()), columns=["Date", "Fraud Cases"])
@@ -49,7 +50,10 @@ app.layout = dbc.Container([
       dcc.Graph(id="fraud-trends-chart",
             figure=px.line(df_fraud_trends, x="Date", y="Fraud Cases",
                    title="Fraud Cases Over Time",
-                   markers=True))
+                   markers=True)),
+      dcc.Graph(id="fraud_age_trends_chart",
+                figure=px.bar(age_trends, x="age", y="fraud_cases",
+                        title="Fraud Cases over Age"))         
     ]),
 
     dcc.Tab(label="Fraud by Source & Browser", children=[
@@ -151,8 +155,8 @@ def predict_fraud(n_clicks, user_id, signup_time, purchase_time, purchase_value,
       "browser_Safari": browser_Safari,
       "sex_M": sex_M
     }).json()
-    prediction_result = "Fraud Detected ⚠️" if response["fraud_prediction"] == "Fraud" else "Legitimate Transaction ✅"
-    return html.H4(prediction_result, className="text-danger" if response["fraud_prediction"] else "text-success")
+    prediction_result = "Fraud Detected ⚠️" if response["prediction"] == "Fraud" else "Legitimate Transaction ✅"
+    return html.H4(prediction_result, className="text-danger" if response["prediction"] else "text-success")
 
 if __name__ == "__main__":
   app.run(debug=True, port=8050)
